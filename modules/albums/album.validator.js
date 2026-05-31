@@ -1,7 +1,7 @@
 const validateCreateAlbum = (req, res, next) => {
   const { name, description } = req.body;
 
-  errors = [];
+  const errors = [];
 
   if (!name || typeof name !== "string") {
     errors.push("Album name is required.");
