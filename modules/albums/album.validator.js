@@ -41,4 +41,31 @@ const validateAlbumId = (req, res, next) => {
   }
 };
 
-module.exports = { validateCreateAlbum, validateAlbumId };
+const validateUpdateAlbum = (req, res, next) => {
+  const { description } = req.body;
+
+  const errors = [];
+
+  if (!description || typeof description !== "string") {
+    errors.push("Description is required.");
+  }
+
+  if (description.trim().length === 0) {
+    errors.push("Description cannot be empty.");
+  }
+
+  if (description.length > 500) {
+    errors.push("Description cannot exceed 500 characters.");
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).json({
+      success: false,
+      errors,
+    });
+  }
+
+  next();
+};
+
+module.exports = { validateCreateAlbum, validateAlbumId, validateUpdateAlbum };
