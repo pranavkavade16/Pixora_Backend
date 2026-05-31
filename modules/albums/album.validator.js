@@ -1,3 +1,6 @@
+const mongoose = require("mongoose");
+const { validate } = require("uuid");
+
 const validateCreateAlbum = (req, res, next) => {
   const { name, description } = req.body;
 
@@ -30,4 +33,12 @@ const validateCreateAlbum = (req, res, next) => {
   next();
 };
 
-module.exports = { validateCreateAlbum };
+const validateAlbumId = (req, res, next) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.albumId)) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Invalid album ID." });
+  }
+};
+
+module.exports = { validateCreateAlbum, validateAlbumId };
