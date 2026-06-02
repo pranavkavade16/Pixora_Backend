@@ -16,4 +16,9 @@ const updateDescription = async (description, albumId) => {
   return Album.findByIdAndUpdate(albumId, { description }, { new: true });
 };
 
-module.exports = { create, findByNameAndOwner };
+module.exports = {
+  create,
+  findByNameAndOwner,
+  findAlbumById,
+  updateDescription,
+};
