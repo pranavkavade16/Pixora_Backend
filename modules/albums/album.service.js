@@ -1,5 +1,5 @@
 const albumRepository = require("./album.respository");
-const 
+const userRepository = require("../users/user.repository");
 
 const createAlbum = async (data, userId) => {
   const existingAlbum = await albumRepository.findByNameAndOwner(
@@ -56,4 +56,4 @@ const shareAlbum = async (albumId, userId, emails) => {
   return await albumRepository.addSharedUsers(albumId, userIds);
 };
 
-module.exports = { createAlbum };
+module.exports = { createAlbum, updateAlbum, shareAlbum };
