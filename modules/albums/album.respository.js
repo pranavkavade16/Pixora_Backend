@@ -16,9 +16,26 @@ const updateDescription = async (description, albumId) => {
   return Album.findByIdAndUpdate(albumId, { description }, { new: true });
 };
 
+const addSharedUsers = async (albumId, userIds) => {
+  return Album.findByIdAndUpdate(
+    albumId,
+    {
+      $addToSet: {
+        sharedWith: {
+          $each: userIds,
+        },
+      },
+    },
+    {
+      new: true,
+    },
+  );
+};
+
 module.exports = {
   create,
   findByNameAndOwner,
   findAlbumById,
   updateDescription,
+  addSharedUsers,
 };
