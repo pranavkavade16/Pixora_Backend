@@ -6,7 +6,7 @@ const {
   validateCreateAlbum,
   validateAlbumId,
   validateUpdateAlbum,
-  validateShareAlbum,
+  validateEmailForShareAlbum,
 } = require("./album.validator");
 
 //routes
@@ -23,7 +23,7 @@ router.put(
 router.post(
   "/albums/:albumId/share",
   validateAlbumId,
-  validateShareAlbum,
+  validateEmailForShareAlbum,
   shareAlbum,
 );
 
