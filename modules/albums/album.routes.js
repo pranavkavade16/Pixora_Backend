@@ -32,6 +32,6 @@ router.post(
   shareAlbum,
 );
 
-router.get("albums", getAllAlbums);
+router.get("/albums", getAllAlbums);
 
 module.exports = router;
