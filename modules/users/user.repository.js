@@ -1,9 +1,10 @@
-const User =
-  require("./user.model");
+const User = require("./user.model");
 
-const findByEmails = async (
-  emails
-) => {
+const createUser = async (data) => {
+  return User.create(data);
+};
+
+const findByEmails = async (emails) => {
   return User.find({
     email: {
       $in: emails,
@@ -13,4 +14,5 @@ const findByEmails = async (
 
 module.exports = {
   findByEmails,
+  createUser,
 };
