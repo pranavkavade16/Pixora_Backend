@@ -47,6 +47,10 @@ const findAllAlbumsByUser = async (userId) => {
     .populate("ownerId", "email");
 };
 
+const deleteAlbum = async (albumId) => {
+  return Album.findByIdAndDelete(albumId);
+};
+
 module.exports = {
   create,
   findByNameAndOwner,

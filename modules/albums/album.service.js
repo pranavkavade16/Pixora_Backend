@@ -59,4 +59,18 @@ const getAllAlbums = async (userId) => {
   return albumRepository.findAllAlbumsByUser(userId);
 };
 
+const deleteAlbum = async (albumId) => {
+  const album = await albumRepository.findAlbumById(albumId);
+
+  if (!album) {
+    throw new Error("Album not found");
+  }
+
+  if (album.ownerId.toString() !== userId) {
+    throw new Error("Only the owner can delete this album");
+  }
+
+  return albumRepository.deleteAlbum(albumId);
+};
+
 module.exports = { createAlbum, updateAlbum, shareAlbum, getAllAlbums };
