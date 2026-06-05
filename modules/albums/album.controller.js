@@ -55,4 +55,16 @@ exports.getAllAlbums = async (req, res, next) => {
   }
 };
 
+exports.deleteAlbum = async (req, res, next) => {
+  try {
+    const { albumId, userId } = req.body;
+    const deletedAlbum = await albumService.deleteAlbum(albumId, userId);
 
+    return res.status(201).json({
+      success: true,
+      message: `Album ${albumId} is deleted successfully.`,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

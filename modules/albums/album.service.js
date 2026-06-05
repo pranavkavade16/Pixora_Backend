@@ -59,7 +59,7 @@ const getAllAlbums = async (userId) => {
   return albumRepository.findAllAlbumsByUser(userId);
 };
 
-const deleteAlbum = async (albumId) => {
+const deleteAlbum = async (albumId, userId) => {
   const album = await albumRepository.findAlbumById(albumId);
 
   if (!album) {
