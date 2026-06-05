@@ -4,6 +4,7 @@ const cors = require("cors");
 const { initializeDatabase } = require("./db/db.connect");
 
 const albumRoutes = require("./modules/albums/album.routes");
+const usersRoutes = require("./modules/users/user.routes");
 const app = express();
 
 const corsOptions = {
@@ -17,6 +18,7 @@ app.use(express.json());
 initializeDatabase();
 
 app.use("/", albumRoutes);
+app.use("/", usersRoutes);
 
 const PORT = process.env.PORT || 5000;
 

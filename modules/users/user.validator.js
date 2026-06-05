@@ -5,12 +5,8 @@ const validateEmail = (req, res, next) => {
 
   const errors = [];
 
-  if (!Array.isArray(emails)) {
-    errors.push("Emails must be an array.");
-  }
-
-  if (!emails || emails.length === 0) {
-    errors.push("At least one email is required.");
+  if (!emails) {
+    errors.push("Email is required.");
   }
 
   emails?.forEach((email) => {
