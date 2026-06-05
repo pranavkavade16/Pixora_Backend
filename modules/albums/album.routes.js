@@ -6,6 +6,7 @@ const {
   updateAlbum,
   shareAlbum,
   getAllAlbums,
+  deleteAlbum,
 } = require("./album.controller");
 const {
   validateCreateAlbum,
@@ -33,5 +34,7 @@ router.post(
 );
 
 router.get("/albums", getAllAlbums);
+
+router.delete("/albums/:albumId", deleteAlbum);
 
 module.exports = router;

@@ -57,7 +57,8 @@ exports.getAllAlbums = async (req, res, next) => {
 
 exports.deleteAlbum = async (req, res, next) => {
   try {
-    const { albumId, userId } = req.body;
+    const { albumId } = req.params;
+    const { userId } = req.body;
     const deletedAlbum = await albumService.deleteAlbum(albumId, userId);
 
     return res.status(201).json({
