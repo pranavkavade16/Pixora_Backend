@@ -1,6 +1,6 @@
 const User = require("./user.model");
 
-const createUser = async (data) => {
+const create = async (data) => {
   return User.create(data);
 };
 
@@ -14,5 +14,5 @@ const findByEmails = async (emails) => {
 
 module.exports = {
   findByEmails,
-  createUser,
+  create,
 };
