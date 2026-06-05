@@ -13,7 +13,6 @@ const createAlbum = async (data, userId) => {
 
   const album = await albumRepository.create({
     ...data,
-    ownerId: userId,
     sharedUsers: [],
   });
 

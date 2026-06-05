@@ -32,10 +32,26 @@ const addSharedUsers = async (albumId, userIds) => {
   );
 };
 
+const findAllAlbumsByUser = async (userId) => {
+  return Album.find({
+    $or: [
+      {
+        ownerId: userId,
+      },
+      {
+        sharedWith: userId,
+      },
+    ],
+  })
+    .populate("sharedWith", "email")
+    .populate("ownerId", "email");
+};
+
 module.exports = {
   create,
   findByNameAndOwner,
   findAlbumById,
   updateDescription,
   addSharedUsers,
+  findAllAlbumsByUser
 };
