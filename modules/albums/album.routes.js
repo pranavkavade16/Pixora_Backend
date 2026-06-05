@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { createAblum, updateAlbum, shareAlbum } = require("./album.controller");
+const { createAlbum, updateAlbum, shareAlbum } = require("./album.controller");
 const {
   validateCreateAlbum,
   validateAlbumId,
@@ -11,7 +11,7 @@ const {
 
 //routes
 
-router.post("/albums", validateCreateAlbum, createAblum);
+router.post("/albums", validateCreateAlbum, createAlbum);
 
 router.put(
   "/albums/:albumId",
