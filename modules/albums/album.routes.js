@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { createAlbum, updateAlbum, shareAlbum } = require("./album.controller");
+const {
+  createAlbum,
+  updateAlbum,
+  shareAlbum,
+  getAllAlbums,
+} = require("./album.controller");
 const {
   validateCreateAlbum,
   validateAlbumId,
@@ -26,5 +31,7 @@ router.post(
   validateEmailForShareAlbum,
   shareAlbum,
 );
+
+router.get("albums", getAllAlbums);
 
 module.exports = router;
