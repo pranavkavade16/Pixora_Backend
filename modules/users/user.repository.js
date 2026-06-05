@@ -12,7 +12,12 @@ const findByEmails = async (emails) => {
   });
 };
 
+const findUserByEmail = async (email) => {
+  return User.findOne({ email });
+};
+
 module.exports = {
   findByEmails,
   create,
+  findUserByEmail,
 };

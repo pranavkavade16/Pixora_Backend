@@ -27,23 +27,17 @@ exports.updateAlbum = async (req, res, next) => {
   }
 };
 
-exports.shareAlbum = async (
-  req,
-  res,
-  next
-) => {
+exports.shareAlbum = async (req, res, next) => {
   try {
-    const album =
-      await albumService.shareAlbum(
-        req.params.albumId,
-        req.user.userId,
-        req.body.emails
-      );
+    const album = await albumService.shareAlbum(
+      req.params.albumId,
+      req.user.userId,
+      req.body.emails,
+    );
 
     return res.status(200).json({
       success: true,
-      message:
-        "Album shared successfully",
+      message: "Album shared successfully",
       data: album,
     });
   } catch (error) {
