@@ -21,7 +21,7 @@ const addSharedUsers = async (albumId, userIds) => {
     albumId,
     {
       $addToSet: {
-        sharedWith: {
+        sharedUsers: {
           $each: userIds,
         },
       },
@@ -39,11 +39,11 @@ const findAllAlbumsByUser = async (userId) => {
         ownerId: userId,
       },
       {
-        sharedWith: userId,
+        sharedUsers: userId,
       },
     ],
   })
-    .populate("sharedWith", "email")
+    .populate("sharedUsers", "email")
     .populate("ownerId", "email");
 };
 
@@ -53,5 +53,5 @@ module.exports = {
   findAlbumById,
   updateDescription,
   addSharedUsers,
-  findAllAlbumsByUser
+  findAllAlbumsByUser,
 };

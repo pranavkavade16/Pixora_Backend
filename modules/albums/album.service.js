@@ -56,7 +56,7 @@ const shareAlbum = async (albumId, userId, emails) => {
 };
 
 const getAllAlbums = async (userId) => {
-  return albumRepository.findAllByUser(userId);
+  return albumRepository.findAllAlbumsByUser(userId);
 };
 
 module.exports = { createAlbum, updateAlbum, shareAlbum, getAllAlbums };
