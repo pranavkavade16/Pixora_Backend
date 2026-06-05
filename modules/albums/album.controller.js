@@ -44,3 +44,13 @@ exports.shareAlbum = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getAllAlbums = async (req, res, next) => {
+  try {
+    const albums = await albumService.getAllAlbums(req.body);
+
+    return res.status(201).json({ success: true, data: albums });
+  } catch (error) {
+    next(error);
+  }
+};
