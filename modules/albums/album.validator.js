@@ -68,6 +68,16 @@ const validateUpdateAlbum = (req, res, next) => {
   next();
 };
 
+const validateAlbumAccess = (album, userId) => {
+  const hasAccess =
+    album.ownerId.toString() === userId ||
+    album.sharedWith.some((id) => id.toString() === userId);
+
+  if (!hasAccess) {
+    throw new Error("Access denied");
+  }
+};
+
 const validateEmailForShareAlbum = (req, res, next) => {
   const { emails } = req.body;
 
@@ -105,6 +115,7 @@ const validateEmailForShareAlbum = (req, res, next) => {
 
 module.exports = {
   validateCreateAlbum,
+  validateAlbumAccess,
   validateAlbumId,
   validateUpdateAlbum,
   validateEmailForShareAlbum,

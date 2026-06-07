@@ -49,7 +49,7 @@ const uploadImage = async (albumId, userId, file, body) => {
 };
 
 const favoriteImage = async (albumId, imageId, userId, isFavorite) => {
-  const album = await albumRepository.findById(albumId);
+  const album = await albumRepository.findAlbumById(albumId);
 
   if (!album) {
     throw new Error("Album not found");
