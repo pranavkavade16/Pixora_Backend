@@ -46,13 +46,25 @@ exports.deleteImage = async (req, res, next) => {
       req.user.userId,
     );
 
-    return res
-      .status(200)
-      .json({
-        success: true,
-        message: "Image delete successfully",
-        data: image,
-      });
+    return res.status(200).json({
+      success: true,
+      message: "Image delete successfully",
+      data: image,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getImagesByAlbum = async (req, res, next) => {
+  try {
+    const images = await imageService.getImagesByAlbum(req.params.albumId);
+
+    return res.status(200).json({
+      success: true,
+      message: "Images fetched successfully.",
+      data: images,
+    });
   } catch (error) {
     next(error);
   }

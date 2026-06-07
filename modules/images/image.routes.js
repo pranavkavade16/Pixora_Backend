@@ -5,6 +5,7 @@ const {
   uploadImage,
   favoriteImage,
   deleteImage,
+  getImagesByAlbum,
 } = require("./image.controller");
 const {
   validateUploadImage,
@@ -28,5 +29,7 @@ router.delete(
   validateAlbumId,
   deleteImage,
 );
+
+router.get("/albums/:albumId/images", validateAlbumId, getImagesByAlbum);
 
 module.exports = router;
