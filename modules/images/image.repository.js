@@ -8,6 +8,10 @@ const findById = async (imageId) => {
   return Image.findById(imageId);
 };
 
+const deleteImage = async (imageId) => {
+  return Image.findByIdAndDelete(imageId);
+};
+
 const updateFavoriteStatus = async (imageId, isFavorite) => {
   return Image.findByIdAndUpdate(
     imageId,

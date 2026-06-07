@@ -1,6 +1,7 @@
 const cloudinary = require("../../utils/cloudinary");
 const imageRepository = require("./image.repository");
 const albumRepository = require("../albums/album.respository");
+const albumValidator = require("../albums/album.validator");
 
 const uploadImage = async (albumId, userId, file, body) => {
   if (!file) {
@@ -76,4 +77,26 @@ const favoriteImage = async (albumId, imageId, userId, isFavorite) => {
   return imageRepository.updateFavoriteStatus(imageId, isFavorite);
 };
 
-module.exports = { uploadImage, favoriteImage };
+const deleteImage = async (albumId, imageId, userId) => {
+  const album = await albumRepository.findAlbumById(albumId);
+
+  if (!album) {
+    throw new Error("Album not found");
+  }
+
+  albumValidator.validateAlbumAccess(albumId, userId);
+
+  const image = await imageRepository.findById(imageId);
+
+  if (!image) {
+    throw new Error("Image not found");
+  }
+
+  if (image.albumId.toString() !== albumId) {
+    throw new Error("Image does not belong to this album");
+  }
+
+  return imageRepository.deleteImage(imageId);
+};
+
+module.exports = { uploadImage, favoriteImage, deleteImage };
