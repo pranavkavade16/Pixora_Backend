@@ -37,3 +37,23 @@ exports.favoriteImage = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.deleteImage = async (req, res, next) => {
+  try {
+    const image = await imageService.deleteImage(
+      req.params.albumId,
+      req.params.imageId,
+      req.user.userId,
+    );
+
+    return res
+      .status(200)
+      .json({
+        success: true,
+        message: "Image delete successfully",
+        data: image,
+      });
+  } catch (error) {
+    next(error);
+  }
+};

@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { uploadImage, favoriteImage } = require("./image.controller");
+const {
+  uploadImage,
+  favoriteImage,
+  deleteImage,
+} = require("./image.controller");
 const {
   validateUploadImage,
   validateAlbumId,
@@ -16,6 +20,13 @@ router.put(
   validateAlbumId,
   validateFavoriteImage,
   favoriteImage,
+);
+
+router.delete(
+  "/albums/:albumId/images/:imageId",
+  validateImageId,
+  validateAlbumId,
+  deleteImage,
 );
 
 module.exports = router;
