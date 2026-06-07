@@ -39,6 +39,17 @@ const validateImageId = (req, res, next) => {
   next();
 };
 
+const validateAlbumId = (req, res, next) => {
+  const { albumId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(albumId)) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid album",
+    });
+  }
+};
+
 const validateFavoriteImage = (req, res, next) => {
   const { isFavorite } = req.body;
 
@@ -55,5 +66,6 @@ const validateFavoriteImage = (req, res, next) => {
 module.exports = {
   validateUploadImage,
   validateImageId,
+  validateAlbumId,
   validateFavoriteImage,
 };
