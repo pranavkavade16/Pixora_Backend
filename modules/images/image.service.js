@@ -99,4 +99,14 @@ const deleteImage = async (albumId, imageId, userId) => {
   return imageRepository.deleteImage(imageId);
 };
 
-module.exports = { uploadImage, favoriteImage, deleteImage };
+const getImagesByAlbum = async (albumId) => {
+  const album = await albumRepository.findAlbumById(albumId);
+
+  if (!album) {
+    throw new Error("Album not found");
+  }
+
+  return await imageRepository.getImagesByAlbum(albumId);
+};
+
+module.exports = { uploadImage, favoriteImage, deleteImage, getImagesByAlbum };

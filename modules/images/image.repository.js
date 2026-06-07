@@ -24,4 +24,8 @@ const updateFavoriteStatus = async (imageId, isFavorite) => {
   );
 };
 
-module.exports = { upload, findById, updateFavoriteStatus };
+const getImagesByAlbum = async (albumId) => {
+  return Image.find({ albumId });
+};
+
+module.exports = { upload, findById, updateFavoriteStatus, getImagesByAlbum };
