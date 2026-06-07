@@ -38,8 +38,7 @@ const uploadImage = async (albumId, userId, file, body) => {
   const image = await imageRepository.upload({
     albumId,
     imageUrl: cloudinaryResponse.secure_url,
-    name: 
-    file.originalname,
+    name: file.originalname,
     size: file.size,
     tags,
     person: body.person || null,
@@ -48,3 +47,33 @@ const uploadImage = async (albumId, userId, file, body) => {
     updatedAt: new Date(),
   });
 };
+
+const favoriteImage = async (albumId, imageId, userId, isFavorite) => {
+  const album = await albumRepository.findById(albumId);
+
+  if (!album) {
+    throw new Error("Album not found");
+  }
+
+  const hasAccess =
+    album.ownerId.toString() === userId ||
+    album.sharedWith.some((sharedUserId) => sharedUserId.toString() === userId);
+
+  if (!hasAccess) {
+    throw new Error("Access denied");
+  }
+
+  const image = await imageRepository.findById(imageId);
+
+  if (!image) {
+    throw new Error("Image not found");
+  }
+
+  if (image.albumId.toString() !== albumId) {
+    throw new Error("Image does not belong to this album");
+  }
+
+  return imageRepository.updateFavoriteStatus(imageId, isFavorite);
+};
+
+module.exports = { uploadImage, favoriteImage };
