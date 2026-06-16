@@ -22,14 +22,14 @@ const albumSchema = new mongoose.Schema(
 
     ownerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "PixoraUser",
       required: true,
     },
 
     sharedUsers: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "PixoraUser",
       },
     ],
   },
