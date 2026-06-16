@@ -33,7 +33,7 @@ router.post(
   shareAlbum,
 );
 
-router.get("/albums", getAllAlbums);
+router.get("/albums/:userId", getAllAlbums);
 
 router.delete("/albums/:albumId", deleteAlbum);
 
