@@ -15,6 +15,7 @@ const {
 } = require("./image.validator");
 
 router.post("/albums/:albumId/images", validateUploadImage, uploadImage);
+
 router.put(
   "/albums/:albumId/images/:imageId/favorite",
   validateImageId,
