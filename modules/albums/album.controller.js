@@ -47,7 +47,7 @@ exports.shareAlbum = async (req, res, next) => {
 
 exports.getAllAlbums = async (req, res, next) => {
   try {
-    const albums = await albumService.getAllAlbums(req.body.userId);
+    const albums = await albumService.getAllAlbums(req.params.userId);
 
     return res.status(201).json({ success: true, data: albums });
   } catch (error) {
