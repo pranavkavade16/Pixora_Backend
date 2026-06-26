@@ -42,7 +42,7 @@ const uploadImage = async (albumId, userId, file, body) => {
     name: file.originalname,
     size: file.size,
     tags,
-    person: body.person || null,
+    persons: body.person || null,
     isFavorite: body.isFavorite || false,
     comments: body.comments.text || null,
     updatedAt: new Date(),
