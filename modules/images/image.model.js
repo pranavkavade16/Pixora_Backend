@@ -21,7 +21,6 @@ const commentSchema = new mongoose.Schema(
   },
   { _id: false },
 );
-
 const imageSchema = new mongoose.Schema(
   {
     imageId: {
@@ -42,15 +41,29 @@ const imageSchema = new mongoose.Schema(
       trim: true,
     },
 
+    imageUrl: {
+      type: String,
+      required: true,
+    },
+
+    publicId: {
+      type: String,
+      required: true,
+    },
+
     tags: [
       {
         type: String,
+        trim: true,
       },
     ],
 
-    person: {
-      type: String,
-    },
+    persons: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
 
     isFavorite: {
       type: Boolean,
@@ -62,11 +75,22 @@ const imageSchema = new mongoose.Schema(
     size: {
       type: Number,
       required: true,
+      min: 0,
     },
 
-    uploadedAt: {
-      type: Date,
-      default: Date.now,
+    width: Number,
+
+    height: Number,
+
+    mimeType: String,
+
+    metadata: {
+      camera: String,
+      lens: String,
+      iso: Number,
+      aperture: String,
+      shutterSpeed: String,
+      focalLength: String,
     },
   },
   {
