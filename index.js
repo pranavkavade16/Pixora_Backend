@@ -5,6 +5,7 @@ const { initializeDatabase } = require("./db/db.connect");
 
 const albumRoutes = require("./modules/albums/album.routes");
 const usersRoutes = require("./modules/users/user.routes");
+const imageRoutes = require("./modules/images/image.routes");
 const app = express();
 
 const corsOptions = {
@@ -19,6 +20,7 @@ initializeDatabase();
 
 app.use("/", albumRoutes);
 app.use("/", usersRoutes);
+app.use("/", imageRoutes);
 
 const PORT = process.env.PORT || 5000;
 
