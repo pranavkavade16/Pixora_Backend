@@ -22,31 +22,35 @@ const uploadImage = async (albumId, userId, file, body) => {
     throw new Error("You do not have access to this album");
   }
 
+  let tags = [];
+  if (body.tags) {
+    tags = JSON.parse(body.tags);
+  }
+
+  let persons = [];
+  if (body.persons) {
+    persons = JSON.parse(body.persons);
+  }
+
+  const isFavorite = body.isFavorite === "true";
+
   const cloudinaryResponse = await cloudinary.uploader.upload(file.path, {
     folder: "pixora-pix",
   });
 
-  let tags = [];
-
-  if (body.tags) {
-    try {
-      tags = JSON.parse(body.tags);
-    } catch {
-      tags = [];
-    }
-  }
-
   const image = await imageRepository.upload({
     albumId,
     imageUrl: cloudinaryResponse.secure_url,
-    name: file.originalname,
+    name: body.name,
     size: file.size,
     tags,
-    persons: body.person || null,
-    isFavorite: body.isFavorite || false,
-    comments: body.comments.text || null,
+    persons,
+    isFavorite,
+    comments: body.comments || null,
     updatedAt: new Date(),
   });
+
+  return image;
 };
 
 const favoriteImage = async (albumId, imageId, userId, isFavorite) => {
