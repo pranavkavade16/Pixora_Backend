@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../../middlewares/upload.middleware");
 
 const {
   uploadImage,
@@ -14,7 +15,12 @@ const {
   validateFavoriteImage,
 } = require("./image.validator");
 
-router.post("/albums/:albumId/images", validateUploadImage, uploadImage);
+router.post(
+  "/albums/:albumId/images",
+  upload.single("image"),
+  validateUploadImage,
+  uploadImage,
+);
 
 router.put(
   "/albums/:albumId/images/:imageId/favorite",
