@@ -15,6 +15,7 @@ const {
   validateEmailForShareAlbum,
 } = require("./album.validator");
 
+
 //routes
 
 router.post("/albums", validateCreateAlbum, createAlbum);
