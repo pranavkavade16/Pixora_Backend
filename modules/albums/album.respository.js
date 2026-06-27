@@ -9,7 +9,7 @@ const findByNameAndOwner = async (name, ownerId) => {
 };
 
 const findAlbumById = async (albumId) => {
-  return Album.findOne({ albumId });
+  return Album.findOne({ _id: albumId });
 };
 
 const updateDescription = async (description, albumId) => {
