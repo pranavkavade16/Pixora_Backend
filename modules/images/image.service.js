@@ -14,8 +14,8 @@ const uploadImage = async (albumId, userId, file, body) => {
     throw new Error("Album not found");
   }
 
-  console.log(userId);
-  console.log(album.ownerId);
+  console.log("userId", userId);
+  console.log("album owner", album.ownerId);
 
   const hasAccess =
     album.ownerId.toString() === userId ||
