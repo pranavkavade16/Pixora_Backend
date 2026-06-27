@@ -81,6 +81,8 @@ const validateAlbumId = (req, res, next) => {
       message: "Invalid album",
     });
   }
+
+  next();
 };
 
 const validateFavoriteImage = (req, res, next) => {

@@ -8,7 +8,7 @@ const uploadImage = async (albumId, userId, file, body) => {
     throw new Error("Image file is required");
   }
 
-  const ablbum = await albumRepository.findAlbumById(albumId);
+  const album = await albumRepository.findAlbumById(albumId);
 
   if (!album) {
     throw new Error("Album not found");
