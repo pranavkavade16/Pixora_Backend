@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
 const validateUploadImage = (req, res, next) => {
-  const { name, tags, persons, isFavorite } = req.body;
-
+  const { name, isFavorite } = req.body;
+  tags = req.body.tags = JSON.parse(req.body.tags || "[]");
+  persons = req.body.persons = JSON.parse(req.body.persons || "[]");
   const errors = [];
 
   // Image
