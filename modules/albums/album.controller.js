@@ -1,3 +1,5 @@
+const albumService = require("./album.service");
+
 exports.createAlbum = async (req, res, next) => {
   try {
     const album = await albumService.createAlbum(req.body);
