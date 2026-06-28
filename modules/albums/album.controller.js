@@ -72,7 +72,7 @@ exports.deleteAlbum = async (req, res, next) => {
 
 exports.getLibrary = async (req, res, next) => {
   try {
-    const userId = req.params;
+    const userId = req.params.userId;
 
     const library = await albumService.getLibrary(userId);
 
