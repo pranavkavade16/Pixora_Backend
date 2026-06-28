@@ -1,9 +1,17 @@
 const mongoose = require("mongoose");
 
 const validateUploadImage = (req, res, next) => {
-  const { name, isFavorite, tags, persons } = req.body;
-
   const errors = [];
+  try {
+    req.body.tags = JSON.parse(req.body.tags || "[]");
+    req.body.persons = JSON.parse(req.body.persons || "[]");
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      errors: ["Invalid tags or persons format"],
+    });
+  }
+  const { name, isFavorite, tags, persons } = req.body;
 
   console.log("Validator running...");
   console.log(req.body);
