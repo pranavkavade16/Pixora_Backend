@@ -1,4 +1,3 @@
-
 exports.createAlbum = async (req, res, next) => {
   try {
     const album = await albumService.createAlbum(req.body);
@@ -68,8 +67,6 @@ exports.deleteAlbum = async (req, res, next) => {
     next(error);
   }
 };
-
-const Album = require("../models/album.model");
 
 exports.getLibrary = async (req, res, next) => {
   try {
