@@ -75,10 +75,11 @@ const deleteAlbum = async (albumId, userId) => {
 };
 
 const getLibrary = async (userId) => {
+  const objectId = new mongoose.Types.ObjectId(userId);
   return await Album.aggregate([
     {
       $match: {
-        $or: [{ ownerId: userId }, { sharedUsers: userId }],
+        $or: [{ ownerId: objectId }, { sharedUsers: objectId }],
       },
     },
 
@@ -148,7 +149,7 @@ const getLibrary = async (userId) => {
         },
 
         isOwner: {
-          $eq: ["$ownerId", userId],
+          $eq: ["$ownerId", objectId],
         },
       },
     },
