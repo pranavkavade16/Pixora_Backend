@@ -1,5 +1,6 @@
 const albumRepository = require("./album.respository");
 const userRepository = require("../users/user.repository");
+const mongoose = require("mongoose")
 const Album = require("./album.model");
 
 const createAlbum = async (data, userId) => {
