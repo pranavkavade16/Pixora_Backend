@@ -38,6 +38,6 @@ router.get("/albums/:userId", getAllAlbums);
 
 router.delete("/albums/:albumId", deleteAlbum);
 
-router.get("/albums/library", getLibrary);
+router.get("/albums/library/:userId", getLibrary);
 
 module.exports = router;

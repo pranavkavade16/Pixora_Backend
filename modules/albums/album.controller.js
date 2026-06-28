@@ -74,7 +74,7 @@ const Album = require("../models/album.model");
 
 exports.getLibrary = async (req, res, next) => {
   try {
-    const userId = req.user._id;
+    const userId = req.params;
 
     const library = await albumService.getLibrary(userId);
 
