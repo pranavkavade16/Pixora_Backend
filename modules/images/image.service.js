@@ -14,26 +14,16 @@ const uploadImage = async (albumId, userId, file, body) => {
     throw new Error("Album not found");
   }
 
+  //   const hasAccess =
+  //     album.ownerId.toString() === userId ||
+  //     album.sharedUsers.some((usersId) => usersId.toString() === userId);
 
+  //   if (!hasAccess) {
+  //     throw new Error("You do not have access to this album");
+  //   }
 
-//   const hasAccess =
-//     album.ownerId.toString() === userId ||
-//     album.sharedUsers.some((usersId) => usersId.toString() === userId);
-
-//   if (!hasAccess) {
-//     throw new Error("You do not have access to this album");
-//   }
-
-  let tags = [];
-  if (body.tags) {
-    tags = JSON.parse(body.tags);
-  }
-
-  let persons = [];
-  if (body.persons) {
-    persons = JSON.parse(body.persons);
-  }
-
+  const tags = body.tags || [];
+  const persons = body.persons || [];
   const isFavorite = body.isFavorite === "true";
 
   const cloudinaryResponse = await cloudinary.uploader.upload(file.path, {
