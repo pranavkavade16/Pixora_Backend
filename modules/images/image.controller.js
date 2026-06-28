@@ -4,7 +4,7 @@ exports.uploadImage = async (req, res, next) => {
   try {
     const image = await imageService.uploadImage(
       req.params.albumId,
-      req.userId,
+      req.body.userId,
       req.file,
       req.body,
     );
