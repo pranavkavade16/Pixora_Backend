@@ -7,6 +7,7 @@ const {
   shareAlbum,
   getAllAlbums,
   deleteAlbum,
+  getLibrary,
 } = require("./album.controller");
 const {
   validateCreateAlbum,
@@ -14,7 +15,6 @@ const {
   validateUpdateAlbum,
   validateEmailForShareAlbum,
 } = require("./album.validator");
-
 
 //routes
 
@@ -37,5 +37,7 @@ router.post(
 router.get("/albums/:userId", getAllAlbums);
 
 router.delete("/albums/:albumId", deleteAlbum);
+
+router.get("/albums/library", getLibrary);
 
 module.exports = router;
