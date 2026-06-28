@@ -5,6 +5,13 @@ const validateUploadImage = (req, res, next) => {
 
   const errors = [];
 
+  console.log("Validator running...");
+  console.log(req.body);
+  console.log("tags:", req.body.tags);
+  console.log("persons:", req.body.persons);
+  console.log("Array tags:", Array.isArray(req.body.tags));
+  console.log("Array persons:", Array.isArray(req.body.persons));
+
   // Image
   if (!req.file) {
     errors.push("Image file is required");
