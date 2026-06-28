@@ -1,4 +1,3 @@
-const albumService = require("./album.service");
 
 exports.createAlbum = async (req, res, next) => {
   try {
