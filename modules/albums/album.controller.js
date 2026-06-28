@@ -69,3 +69,20 @@ exports.deleteAlbum = async (req, res, next) => {
     next(error);
   }
 };
+
+const Album = require("../models/album.model");
+
+exports.getLibrary = async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+
+    const library = await albumService.getLibrary(userId);
+
+    res.status(200).json({
+      success: true,
+      data: library,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

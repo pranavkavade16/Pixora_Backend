@@ -73,4 +73,111 @@ const deleteAlbum = async (albumId, userId) => {
   return albumRepository.deleteAlbum(albumId);
 };
 
-module.exports = { createAlbum, updateAlbum, shareAlbum, getAllAlbums };
+const getLibrary = async (userId) => {
+  return await Album.aggregate([
+    {
+      $match: {
+        $or: [{ ownerId: userId }, { sharedUsers: userId }],
+      },
+    },
+
+    {
+      $lookup: {
+        from: "images",
+        let: {
+          albumObjectId: "$_id",
+        },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$albumId", "$$albumObjectId"],
+              },
+            },
+          },
+
+          {
+            $project: {
+              _id: 0,
+              imageId: 1,
+              imageUrl: 1,
+            },
+          },
+
+          {
+            $limit: 4,
+          },
+        ],
+        as: "previewImages",
+      },
+    },
+
+    {
+      $lookup: {
+        from: "images",
+        let: {
+          albumObjectId: "$_id",
+        },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $eq: ["$albumId", "$$albumObjectId"],
+              },
+            },
+          },
+
+          {
+            $count: "count",
+          },
+        ],
+        as: "imageCount",
+      },
+    },
+
+    {
+      $addFields: {
+        imageCount: {
+          $ifNull: [
+            {
+              $arrayElemAt: ["$imageCount.count", 0],
+            },
+            0,
+          ],
+        },
+
+        isOwner: {
+          $eq: ["$ownerId", userId],
+        },
+      },
+    },
+
+    {
+      $project: {
+        _id: 0,
+        albumId: 1,
+        name: 1,
+        description: 1,
+        createdAt: 1,
+        updatedAt: 1,
+        imageCount: 1,
+        previewImages: 1,
+        isOwner: 1,
+      },
+    },
+
+    {
+      $sort: {
+        updatedAt: -1,
+      },
+    },
+  ]);
+};
+
+module.exports = {
+  createAlbum,
+  updateAlbum,
+  shareAlbum,
+  getAllAlbums,
+  getLibrary,
+};
