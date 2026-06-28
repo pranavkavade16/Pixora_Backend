@@ -14,16 +14,15 @@ const uploadImage = async (albumId, userId, file, body) => {
     throw new Error("Album not found");
   }
 
-  console.log("userId", userId);
-  console.log("album owner", album.ownerId);
 
-  const hasAccess =
-    album.ownerId.toString() === userId ||
-    album.sharedUsers.some((usersId) => usersId.toString() === userId);
 
-  if (!hasAccess) {
-    throw new Error("You do not have access to this album");
-  }
+//   const hasAccess =
+//     album.ownerId.toString() === userId ||
+//     album.sharedUsers.some((usersId) => usersId.toString() === userId);
+
+//   if (!hasAccess) {
+//     throw new Error("You do not have access to this album");
+//   }
 
   let tags = [];
   if (body.tags) {
