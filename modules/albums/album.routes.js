@@ -8,6 +8,7 @@ const {
   getAllAlbums,
   deleteAlbum,
   getLibrary,
+  getAlbumById,
 } = require("./album.controller");
 const {
   validateCreateAlbum,
@@ -39,5 +40,7 @@ router.get("/albums/:userId", getAllAlbums);
 router.delete("/albums/:albumId", deleteAlbum);
 
 router.get("/albums/library/:userId", getLibrary);
+
+router.get("/albums/:albumId", validateAlbumId, getAlbumById);
 
 module.exports = router;
