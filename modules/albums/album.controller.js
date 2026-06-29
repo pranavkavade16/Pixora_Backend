@@ -49,7 +49,17 @@ exports.getAllAlbums = async (req, res, next) => {
   try {
     const albums = await albumService.getAllAlbums(req.params.userId);
 
-    return res.status(201).json({ success: true, data: albums });
+    return res.status(200).json({ success: true, data: albums });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getAlbumById = async (req, res, next) => {
+  try {
+    const album = await albumService.getAlbumById(req.params.albumId);
+
+    return res.status(200).json({ success: true, data: album });
   } catch (error) {
     next(error);
   }
@@ -72,7 +82,7 @@ exports.deleteAlbum = async (req, res, next) => {
 
 exports.getLibrary = async (req, res, next) => {
   try {
-    const {userId} = req.params;
+    const { userId } = req.params;
 
     const library = await albumService.getLibrary(userId);
 

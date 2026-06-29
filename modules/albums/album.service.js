@@ -186,5 +186,6 @@ module.exports = {
   updateAlbum,
   shareAlbum,
   getAllAlbums,
+  getAlbumById,
   getLibrary,
 };
