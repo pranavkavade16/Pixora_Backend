@@ -1,6 +1,6 @@
 const albumRepository = require("./album.respository");
 const userRepository = require("../users/user.repository");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const Album = require("./album.model");
 
 const createAlbum = async (data, userId) => {
@@ -59,6 +59,10 @@ const shareAlbum = async (albumId, userId, emails) => {
 
 const getAllAlbums = async (userId) => {
   return albumRepository.findAllAlbumsByUser(userId);
+};
+
+const getAlbumById = async (albumId) => {
+  return albumRepository.findAlbumById(albumId);
 };
 
 const deleteAlbum = async (albumId, userId) => {
