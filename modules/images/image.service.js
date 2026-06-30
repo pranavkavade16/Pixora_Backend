@@ -105,4 +105,14 @@ const getImagesByAlbum = async (albumId) => {
   return await imageRepository.getImagesByAlbum(albumId);
 };
 
-module.exports = { uploadImage, favoriteImage, deleteImage, getImagesByAlbum };
+const getImageById = async (imageId) => {
+  return (image = await imageRepository.findById(imageId));
+};
+
+module.exports = {
+  uploadImage,
+  favoriteImage,
+  deleteImage,
+  getImagesByAlbum,
+  getImageById,
+};

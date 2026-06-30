@@ -69,3 +69,17 @@ exports.getImagesByAlbum = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getImagesById = async (req, res, next) => {
+  try {
+    const image = await imageService.getImageById(req.params.imageId);
+
+    return res.status(200).json({
+      success: true,
+      message: "Images fetched successfully.",
+      data: image,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
