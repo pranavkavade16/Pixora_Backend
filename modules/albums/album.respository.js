@@ -58,4 +58,5 @@ module.exports = {
   updateDescription,
   addSharedUsers,
   findAllAlbumsByUser,
+  deleteAlbum,
 };
