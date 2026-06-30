@@ -39,6 +39,8 @@ const validateAlbumId = (req, res, next) => {
       .status(400)
       .json({ success: false, message: "Invalid album ID." });
   }
+
+  next()
 };
 
 const validateUpdateAlbum = (req, res, next) => {
