@@ -12,4 +12,7 @@ const createUser = async (data) => {
   return user;
 };
 
-module.exports = { createUser };
+const getAllUsers = async () => {
+  return await userRepository.getAllUsers();
+};
+module.exports = { createUser, getAllUsers };
